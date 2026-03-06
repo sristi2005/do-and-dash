@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Main Brand Colors */
+    --background: 240 26% 15%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 26% 18%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 26% 18%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Hot Pink Primary */
+    --primary: 343 100% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Electric Purple Secondary */
+    --secondary: 250 77% 64%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted Navy Backgrounds */
+    --muted: 240 26% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    /* Teal Accent */
+    --accent: 178 100% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Yellow for notifications */
+    --warning: 47 100% 62%;
+    --warning-foreground: 240 26% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 26% 25%;
+    --input: 240 26% 22%;
+    --ring: 343 100% 62%;
+
+    --radius: 1rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(343 100% 62%), hsl(250 77% 64%));
+    --gradient-accent: linear-gradient(135deg, hsl(178 100% 40%), hsl(250 77% 64%));
+    --gradient-warm: linear-gradient(135deg, hsl(343 100% 62%), hsl(47 100% 62%));
+    
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(343 100% 62% / 0.3);
+    --shadow-card: 0 8px 30px hsl(240 26% 10% / 0.4);
+    --shadow-lift: 0 12px 40px hsl(240 26% 10% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer utilities {
+  .animate-bounce-soft {
+    animation: bounce-soft 0.5s ease-in-out;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.4s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-lg border border-border/50;
+  }
+
+  .btn-primary-animated {
+    @apply bg-gradient-to-r from-primary to-secondary text-primary-foreground font-semibold 
+           transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_hsl(343_100%_62%/0.5)] 
+           active:scale-95;
+  }
+
+  .card-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_hsl(240_26%_10%/0.5)];
+  }
+}
+
+@keyframes bounce-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes scale-in {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
